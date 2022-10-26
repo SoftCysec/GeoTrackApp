@@ -128,6 +128,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    
+
+STATIFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+    )
+
 
 LEAFLET_CONFIG = {
     'DEFAULT_CENTER': (0.023, 36.87),
@@ -135,5 +141,5 @@ LEAFLET_CONFIG = {
     'MAX_ZOOM': 20,
     'MIN_ZOOM': 3,
     'SCALE': 'both',
-    'ATTRIBUTION_PREFIX': 'Desveloped by Dedan Okware',
+    'ATTRIBUTION_PREFIX': 'Developed by Dedan Okware',
 }

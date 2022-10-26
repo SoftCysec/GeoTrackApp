@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #gis {
+            width: 80%;
+            height: 60%;
+        }
+    </style>
+    <script src="leaflet/dist/leaflet.ajax.js"></script>
+    <script>
+        function MyLater(map, options) {
+            let incidences = L.geoJson(null, {
+                pointToLayer: function(feature, latlng) {
+                    return L.maker(latlng, {
+                        icon: L.icon({
+                            iconUrl: 'static/leaflet/images/marker-icon-2x.png',
+                            iconSize: [28, 32],
+                            iconAnchor: [12, 28],
+                            pipupAnchor: [0, -25]
+                        }),
+                        title: feature.properties.title,
+                        riseOnHover: true
+                    });
+                },
+            }).addTo(map);
+            let incidencesUrl = 'incidences';
+            $.getJSON(incidencesUrl, function(data) {
+                incidences.addTo(data);
+            });
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
