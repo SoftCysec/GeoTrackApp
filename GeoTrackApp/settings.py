@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.gis',
     'leaflet',
     'reporter',
+    'rest_framework',
+    'rest_framework_gis',
 ]
 
 MIDDLEWARE = [
@@ -135,11 +137,11 @@ STATIFILES_DIRS = (
     )
 
 
-LEAFLET_CONFIG = {
-    'DEFAULT_CENTER': (0.023, 36.87),
-    'DEFAULT_ZOOM' : 6,
-    'MAX_ZOOM': 20,
-    'MIN_ZOOM': 3,
-    'SCALE': 'both',
-    'ATTRIBUTION_PREFIX': 'Developed by Dedan Okware',
-}
+# LEAFLET_CONFIG = {
+#     'DEFAULT_CENTER': (0.023, 36.87),
+#     'DEFAULT_ZOOM' : 6,
+#     'MAX_ZOOM': 20,
+#     'MIN_ZOOM': 3,
+#     'SCALE': 'both',
+#     'ATTRIBUTION_PREFIX': 'Developed by Dedan Okware',
+# }

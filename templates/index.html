@@ -1,33 +1,36 @@
-{% load static %}
 <!DOCTYPE html>
-{% load leaflet_tags %}
 <html lang="en">
 <head>
-    {% leaflet_js %}
-    {% leaflet_css %}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        #gis {
-            height:500px;
-            width:100%;
-            border: solid 1px blue;
-        }
-    </style>
-    <script src="{% static 'dist/leaflet.ajax.js' %}"></script>
-    <script src="{% static 'dist/leaflet.ajax.min.js' %}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.2/leaflet.css">
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.2/leaflet.js"></script>
 </head>
 <body>
-    <script type="text/javascript">
-        function our_layer(map, options) {
-            var datasets = new L.GeoJSON.AJAX("{% url 'county' %}",{
+    <div id="map" style="height:500px;width:80%;" ></div>
 
-            });
-            datasets.addTo(map);
-            }
+    <script type="text/javascript">
+        var google_streets = L.tileLayer('http://{s}.google.com/vt/lyrs]=m&x={x}&y={y}&z={z}', {
+            maxZoom: 22,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        })
+        var map = L.map('map', {
+            center: [0.36, 36.4553],
+            zoom: 6,
+            layers: [google_streets],
+            SCALE: 'both',
+            ATTRIBUTION_PREFIX: 'Powered Machini Technologies LTD.',
+        });
+        var county = L.geoJson(null);
+        map.addLayer(county);
+        var url = "{% url 'county' %}";
+        $.getJSON(url, function(data){
+            county.addData(data)
+        })
     </script>
-    {% leaflet_map 'gis' callback="window.our_layer"%}
+    
 </body>
 </html>
